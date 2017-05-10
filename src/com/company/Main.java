@@ -14,10 +14,9 @@ public class Main {
 
     public static final String JAR_LOCATION = "/home/pawel/jars";
     public static final String BIN_LOCATION = "/usr/bin";
-    private static final String LAUNCHER_FORMAT = "#!/bin/bash\n echo %s" ;
+    private static final String LAUNCHER_FORMAT = "#!/bin/bash\n java -jar %s \"$@\"" ;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-
         File pathToJar = new File(args[0]);
         String jarName = pathToJar.getName();
         File targetLocation = new File(JAR_LOCATION,jarName);
@@ -26,13 +25,14 @@ public class Main {
     }
 
     private static void copy(File pathToJar, File targetLocation) throws IOException, InterruptedException {
-        Path p=Files.copy(pathToJar.toPath(),targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(pathToJar.toPath(),targetLocation.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 
     private static void createLauncher(File targetLocation) throws IOException {
         String targetName = targetLocation.getName().replace(".jar","");
-        String launcherScript = String.format(LAUNCHER_FORMAT,targetName);
+        String launcherScript = String.format(LAUNCHER_FORMAT,targetLocation.getAbsolutePath());
         File launcherPath = new File(BIN_LOCATION,targetName);
         Files.write(launcherPath.toPath(),launcherScript.getBytes());
+        launcherPath.setExecutable(true,false);
     }
 }
