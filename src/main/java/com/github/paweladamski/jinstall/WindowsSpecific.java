@@ -1,9 +1,10 @@
 package com.github.paweladamski.jinstall;
 
-public class WindowsSpecific implements OsSpecific {
+class WindowsSpecific implements OsSpecific {
+
     @Override
     public String getLauncherScript(String jarName) {
-        return null;
+        return String.format("@echo off\n java -jar %s %*", jarName);
     }
 
     @Override

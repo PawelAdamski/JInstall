@@ -13,9 +13,9 @@ import java.nio.file.StandardCopyOption;
 public class JInstallMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "${project.build.finalName}")
-    private File finalName = new File("");
+    private final File finalName = new File("");
 
-    private OsSpecific osSpecific = OsSpecific.getInstance();
+    private final OsSpecific osSpecific = OsSpecific.getInstance();
 
     private String getBinLocation() {
         return System.getenv("JAR_PATH");

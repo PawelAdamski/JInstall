@@ -1,6 +1,6 @@
 package com.github.paweladamski.jinstall;
 
-public interface OsSpecific {
+interface OsSpecific {
     String getLauncherScript(String jarName);
 
     String getLauncherName(String finalName);
@@ -11,7 +11,6 @@ public interface OsSpecific {
 
     static boolean isWindows() {
         String osName = System.getProperty("os.name");
-        ;
         return osName.startsWith("Windows");
     }
 }
