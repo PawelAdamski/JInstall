@@ -11,10 +11,11 @@ import java.nio.file.StandardCopyOption;
 
 @org.apache.maven.plugins.annotations.Mojo(name = "install")
 public class JInstallMojo extends AbstractMojo {
+
     @Parameter(defaultValue = "${project.build.finalName}")
     private File finalName = new File("");
 
-    private static final String LAUNCHER_FORMAT = "#!/bin/bash\n java -jar %s \"$@\"";
+    private OsSpecific osSpecific = OsSpecific.getInstance();
 
     private String getBinLocation() {
         return System.getenv("JAR_PATH");
@@ -25,10 +26,8 @@ public class JInstallMojo extends AbstractMojo {
     }
 
     private void createLauncher(File jarLocation) throws IOException {
-        String launcherName = jarLocation.getName()
-                .replace(".jar", "")
-                .replace("-jar-with-dependencies", "");
-        String launcherScript = String.format(LAUNCHER_FORMAT, jarLocation.getAbsolutePath());
+        String launcherName = osSpecific.getLauncherName(finalName.getName());
+        String launcherScript = osSpecific.getLauncherScript(jarLocation.getAbsolutePath());
         File launcherPath = new File(getBinLocation(), launcherName);
         Files.write(launcherPath.toPath(), launcherScript.getBytes());
         if (!launcherPath.setExecutable(true, false)) {
