@@ -1,6 +1,6 @@
 package com.github.paweladamski.jinstall;
 
-class UnixSpecific implements OsSpecific {
+public class UnixSpecific implements OsSpecific {
 
     @Override
     public String getLauncherScript(String jarPath) {
