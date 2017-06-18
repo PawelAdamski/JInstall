@@ -2,7 +2,7 @@
 ## Overview
 JInstall is an Maven plugin which allows you to install application on your local machine.
 
-### Example
+## Example
 Imagine you have created ping application in Java. Let's call it JPing.
 Java application are distributed as Jar files. So to launch it, you need to write
 
@@ -15,3 +15,6 @@ but with JInstall plugin you can write `mvn install`. It will create a launching
 ```bash
 jping example.com
 ```
+
+##Set up
+Before start using `JInstall` you must set up enviroment variables.
