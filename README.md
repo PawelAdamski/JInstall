@@ -1,6 +1,6 @@
 # JInstall
 ## Overview
-JInstall is an Maven plugin which allows you to install application on your local machine.
+JInstall is an Maven plugin which allows you to install Java application on your local machine.
 
 ## Example
 Imagine you have created ping application in Java. Let's call it JPing.
