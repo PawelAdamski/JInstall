@@ -16,5 +16,5 @@ but with JInstall plugin you can write `mvn install`. It will create a launching
 jping example.com
 ```
 
-##Set up
-Before start using `JInstall` you must set up enviroment variables.
+## Set up
+Before start using `JInstall` you must set up enviroment variable `JAR_PATH`.
